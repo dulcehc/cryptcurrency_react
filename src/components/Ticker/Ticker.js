@@ -10,6 +10,7 @@ class Ticker extends Component {
       data: [
         {
           id: "bitcoin",
+          rank: "1",
           name: "Bitcoin",
           symbol: "BTC",
           price_usd: "1",
@@ -19,6 +20,7 @@ class Ticker extends Component {
         },
         {
           id: "ethereum",
+          rank: "2",
           name: "Ethereum",
           symbol: "ETH",
           price_usd: "1",
@@ -28,6 +30,7 @@ class Ticker extends Component {
         },
         {
           id: "litecoin",
+          rank: "3",
           name: "Litecoin",
           symbol: "LTC",
           price_usd: "1",
@@ -47,8 +50,8 @@ class Ticker extends Component {
   fetchCryptocurrencyData() {
     axios.get("https://api.coinmarketcap.com/v1/ticker/?limit=10")
       .then(response => {
-        const wanted = ["bitcoin", "ethereum", "litecoin"];
-        let result = response.data.filter(currency => wanted.includes(currency.id));
+        let result = response.data.filter((currency, i) => i <= 3);
+        console.log(JSON.stringify(result));
         this.setState({ data: result});
       })
       .catch(err => console.log(err));

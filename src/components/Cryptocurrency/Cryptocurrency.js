@@ -5,6 +5,7 @@ class Cryptocurrency extends Component {
   render() {
     let {
         id,
+        rank,
         name,
         symbol,
         price_usd,
@@ -14,8 +15,8 @@ class Cryptocurrency extends Component {
     } = this.props.data;
 
     return (
-      <li className={"cryptocurrency " + id}>
-        <p className="cryptocurrency-name">{name} ({symbol})</p>
+      <li className={`cryptocurrency rank${rank}`}>
+        <p className="cryptocurrency-name">{rank}. {name} ({symbol})</p>
         <h1>${ (+price_usd).toFixed(2) }</h1>
         <p>{percent_change_1h}% 1hr</p>
         <p>{percent_change_24h}% 24hrs</p>
